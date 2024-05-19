@@ -24,7 +24,7 @@ async function createContact(req, res) {
 
 async function getAllContacts(req, res) {
     try {
-        const contacts = await getAll();
+        const contacts = await getAll(req.user);
         res.status(200).json(contacts);
     } catch (error) {
         return res.status(500).json({ "Error": "Internal server error", "details": error.message });

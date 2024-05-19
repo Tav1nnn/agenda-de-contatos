@@ -6,8 +6,12 @@ const createContact = async (contact) => {
     });
 }       
 
-const getAllContact = async () => {
-    return await prisma.contacts.findMany();
+const getAllContact = async (email) => {
+    return await prisma.contacts.findMany({
+        where: {
+            email:email
+        }
+    });
 }
 
 const existContact = async (id) => {

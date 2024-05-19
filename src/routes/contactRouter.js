@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const { createContact, getAllContacts,  updateContact, deleteContact} = require("../controllers/contactController");
+const { auth } = require("../middlewares/auth");
 
+router.use(auth);
 router.post("/v1/contact", createContact);
 router.get("/v1/contact", getAllContacts);
 router.put("/v1/contact/:id", updateContact);
-router.delete("/v1/contact/:id", deleteContact)
+router.delete("/v1/contact/:id", deleteContact);
 
 module.exports = { router };

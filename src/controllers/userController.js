@@ -1,6 +1,7 @@
 const yup = require("yup");
 const { create, exist } = require("../repository/userRepository");
 const bcrypy = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 async function createUser(req, res) {
     const user = req.body;
@@ -53,7 +54,12 @@ async function loginUser(req, res) {
             return res.status(401).json({ "Error": "invalid credential" });
         }
 
-        return res.sendStatus(200);
+        const token = jwt.sign({
+            id: user.id,
+            email: user.email
+        }, "shhh");
+
+        return res.status(200).json({"token": token});
 
    } catch (error) {
         return res.status(500).json({"Error": "Internal server error", "details": error.message});
