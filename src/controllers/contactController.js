@@ -3,9 +3,9 @@ const yup = require("yup");
 
 async function createContact(req, res) {
     const contact = req.body;
-    const schemaInstance = schema();
+    const schemaValidate = schema();
     try {
-        await schemaInstance.validate(contact);
+        await schemaValidate.validate(contact);
     } catch (error) {
         return res.status(400).json({ "Error": "Schema validation failed", "details": error.errors });
     }
@@ -46,10 +46,10 @@ async function updateContact(req, res) {
     }
 
     const contact = req.body;
-    const schemaInstance = schema();
+    const schemaValidate = schema();
 
     try {
-        await schemaInstance.validate(contact);
+        await schemaValidate.validate(contact);
     } catch (error) {
         return res.status(400).json({ "Error": "Schema validation failed", "details": error.errors });
     }
@@ -87,7 +87,7 @@ async function deleteContact (req, res) {
 }
 
 function schema() {
-    return schema = yup.object().shape({
+    return yup.object().shape({
         name: yup.string().required(),
         phone: yup.string().matches(/^\(\d{2}\)\d{4}-\d{4}$/, "Erro no formato do telefone. Exemplo: (xx)xxxx-yyyy"),
         email: yup.string().email().required()
