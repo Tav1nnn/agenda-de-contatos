@@ -35,10 +35,10 @@ async function updateContact(req, res) {
     const id = Number(req.params.id);
 
     try {
-        const existContact = await exist(id);
+        const existContact = await exist(id, req.user.id);
 
         if(!existContact){
-            return res.status(404).json({"Error": "Id not found"})
+            return res.status(404).json({"Error": "Contact not found"})
         }
 
     } catch (error) {
@@ -68,10 +68,10 @@ async function deleteContact (req, res) {
     const id = Number(req.params.id);
 
     try {
-        const existContact = await exist(id);
+        const existContact = await exist(id, req.user.id);
 
         if(!existContact){
-            return res.status(404).json({"Error": "Id not found"})
+            return res.status(404).json({"Error": "Contact not found"})
         }
 
     } catch (error) {

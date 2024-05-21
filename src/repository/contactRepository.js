@@ -23,10 +23,11 @@ const getAllContact = async (id) => {
     });
 }
 
-const existContact = async (id) => {
+const existContact = async (id, userid) => {
     return await prisma.contacts.findUnique({
         where: {
-            id:id
+            id:id,
+            usersId: userid
         },
     });
 }
