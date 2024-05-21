@@ -1,15 +1,24 @@
 const { prisma } = require("./prisma");
 
-const createContact = async (contact) => {
+const createContact = async (contact, userid) => {
     return await prisma.contacts.create({
-        data: contact
+        data: {
+            name: contact.name,
+            phone: contact.phone,
+            email: contact.email,
+            user: {
+                connect: {
+                    id: userid
+                }
+            }
+        }
     });
 }       
 
-const getAllContact = async (email) => {
+const getAllContact = async (id) => {
     return await prisma.contacts.findMany({
         where: {
-            email:email
+            usersId:id
         }
     });
 }

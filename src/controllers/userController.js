@@ -55,8 +55,8 @@ async function loginUser(req, res) {
         }
 
         const token = jwt.sign({
-            id: user.id,
-            email: user.email
+            id: existUser.id,
+            email: existUser.email
         }, "shhh");
 
         return res.status(200).json({"token": token});

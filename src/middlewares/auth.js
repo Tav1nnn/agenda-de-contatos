@@ -9,7 +9,7 @@ const auth = (req, res, next) => {
 
     try {
         const tokenVerify = jwt.verify(token, "shhh");
-        req.user = tokenVerify.email;
+        req.user = tokenVerify;
         next();
     } catch (error) {
         return res.status(401).json({msg: "No token, authorization denied."});

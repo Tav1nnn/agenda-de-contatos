@@ -11,15 +11,17 @@ datasource db {
 }
 
 model Contacts {
-  id Int @id @default(autoincrement())
-  name String 
-  phone String
-  email String @unique
+  id      Int    @id @default(autoincrement())
+  name    String
+  phone   String
+  email   String 
+  user    Users  @relation(fields: [usersId], references: [id])
+  usersId Int 
 }
 
 model Users {
-  id Int @id @default(autoincrement())
-  email String @unique
-  password String 
+  id       Int        @id @default(autoincrement())
+  email    String     @unique
+  password String
+  Contacts Contacts[]
 }
-

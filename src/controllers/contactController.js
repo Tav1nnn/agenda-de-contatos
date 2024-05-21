@@ -1,5 +1,5 @@
-const { create, getAll, exist, update, deleteC} = require("../repository/contactRepository");
-const yup = require("yup");
+    const { create, getAll, exist, update, deleteC} = require("../repository/contactRepository");
+    const yup = require("yup");
 
 async function createContact(req, res) {
     const contact = req.body;
@@ -11,7 +11,7 @@ async function createContact(req, res) {
     }
 
     try {
-        const newContact = await create(contact);
+        const newContact = await create(contact, req.user.id);
         if (!newContact.id) {
             return res.status(400).json({ "Error": "Error creating contact" });
         }
@@ -24,7 +24,7 @@ async function createContact(req, res) {
 
 async function getAllContacts(req, res) {
     try {
-        const contacts = await getAll(req.user);
+        const contacts = await getAll(req.user.id);
         res.status(200).json(contacts);
     } catch (error) {
         return res.status(500).json({ "Error": "Internal server error", "details": error.message });
