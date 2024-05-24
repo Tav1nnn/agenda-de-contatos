@@ -80,7 +80,7 @@ async function deleteContact (req, res) {
 
     try {
         await deleteC(id);
-        return res.status(200);
+        return res.sendStatus(200);
     } catch (error) {
         return res.status(500).json({"Error": "Internal server error", "details": error.message})
     }
