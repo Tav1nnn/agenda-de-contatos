@@ -89,7 +89,7 @@ async function deleteContact (req, res) {
 function schema() {
     return yup.object().shape({
         name: yup.string().required(),
-        phone: yup.string().matches(/^\(\d{2}\)\d{4}-\d{4}$/, "Erro no formato do telefone. Exemplo: (xx)xxxx-yyyy"),
+        phone: yup.string().matches(/^\(\d{2}\)\d{5}-\d{4}$/, "Erro no formato do telefone. Exemplo: (xx)xxxxx-yyyy"),
         email: yup.string().email().required()
     })
 }

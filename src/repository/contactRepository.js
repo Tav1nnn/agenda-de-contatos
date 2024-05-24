@@ -10,8 +10,8 @@ const createContact = async (contact, userid) => {
                 connect: {
                     id: userid
                 }
-            }
         }
+            }
     });
 }       
 

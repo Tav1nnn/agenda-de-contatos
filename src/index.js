@@ -5,8 +5,8 @@ const {router: user} = require("./routes/userRouter");
 const server = express();
 server.use(express.json());
 
-server.use("/api", user);
-server.use("/api", contact);
+server.use(user);
+server.use(contact);
 
 const port = 3000;
 server.listen(port, () => {
